@@ -1,0 +1,29 @@
+<html>
+<body>
+<table>
+<tr>
+<th>Name</th>
+<th>Age</th>
+<th>phone_no</th>
+<th>Address</th>
+<th>Gender</th>
+<th>Username</th>
+</tr>
+{% for u in us %}
+<tr>
+<td>{{u.Name}}</td>
+<td>{{u.Age}}</td>
+<td>{{u.phone_no}}</td>
+<td>{{u.Address}}</td>
+<td>{{u.Gender}}</td>
+<td>{{u.Username}}</td>
+<td><a href = "{% url 'deleteUser' u.id %}">Delete</a></td>
+<td><a href = "{% url 'editUser' u.id %}">Edit</a></td>
+</tr>
+{% endfor %}
+
+</table>
+</body>
+</html>
+
+

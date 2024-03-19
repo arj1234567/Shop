@@ -1,0 +1,11 @@
+welcome user
+<li><a href="{% url 'viewuser' %}">viewuser</a></li>
+{% if messages %}
+{% for msg in messages %}
+<script>
+alert('{{msg}}')
+</script>
+{% endfor %}
+
+{% endif %}
+</html>

@@ -1,0 +1,142 @@
+<html>
+<body>
+    <script src="/static/jquery-1.8.3.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $("#username").change(function(){
+        var user=$("#username").val();
+        $.ajax({
+            url:"{% url 'getuser' %}",
+            data:{'us':user},
+            success:function(data){
+                if(data.valid=="exist")
+                {
+                    alert("username already exist");
+                }
+
+            }
+            
+        })
+    })
+})
+
+</script>
+
+
+<script type = "text/javascript">
+function validation(){
+var alpha = /^[a-zA-Z]+$/;
+var num = /^[0-9]+$/;
+var name = document.getElementById('name')
+var age = document.getElementById('age')
+var phone= document.getElementById('phone')
+var address = document.getElementById('address')
+var gender = document.myform.gender
+var username = document.getElementById('username')
+var password = document.getElementById('password')
+
+if(name.value.length == 0){
+alert('enter a name');
+return false;
+}
+else if(!name.value.match(alpha)){
+alert('invalid name');
+name.focus()
+return false;
+}
+else if(age.value.length == 0){
+alert('enter a age');
+return false;
+}
+else if(phone.value.length == 0){
+alert('enter a phone');
+return false;
+}
+else if(!phone.value.match(num)){
+alert('invalid number');
+phone.focus()
+return false;
+}
+else if(address.value.length == 0){
+alert('enter a address');
+return false;
+}
+else if(gender[0].checked == false && gender[1].checked == false){
+alert('enter a gender');
+return false;
+}
+if(username.value.length == 0){
+alert('enter a username');
+return false;
+}
+if(password.value.length == 0){
+alert('enter a password');
+return false;
+}
+else{
+return true;
+}
+
+}
+
+
+
+</script>
+<table>
+<form method ="post" action ="{% url 'registerAction' %}" name ="myform">
+{% csrf_token %}
+<tr>
+<th>Name</th>
+<td><input type = "text" name = "name" id ="name"></td>
+</tr>
+<tr>
+<th>Age</th>
+<td><input type = "number" name = "age" id = "age"></td>
+</tr>
+<tr>
+<th>Phone No</th>
+<td><input type = "number" name = "phone" id="phone"></td>
+</tr>
+<tr>
+<th>Address</th>
+<td><textarea name = "address" col = "10" row ="5" id="address"></textarea></td>
+</tr>
+<tr>
+<tr>
+<th>City</th>
+<td>
+<select name ="city">
+<option>---select---</option>
+{% for j in cit %}
+<option value ="1">{{j.city}}</option>
+{% endfor %}
+</select>
+</td>
+</tr>
+<th>Gender</th>
+<td><input type ="radio" name ="gender" value ="female" id ="gender">Female
+<input type = "radio" name ="gender" value ="male" id ="gender">Male</td>
+</tr>
+<tr>
+<th>UserName</th>
+<td><input type = "text" name = "username" id ="username"></td>
+</tr>
+<tr>
+<th>Password</th>
+<td><input type = "password" name = "password" id = "password"></td>
+</tr>
+<tr>
+<td><input type = "submit" value ="register" onclick = "return validation()"></td>
+</tr>
+</form>
+</table>
+</body>
+{% if messages %}
+{% for msg in messages %}
+<script>
+alert('{{msg}}')
+</script>
+{% endfor %}
+{% endif %}
+</html>

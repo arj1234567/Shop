@@ -1,0 +1,40 @@
+<html>
+<script src="/static/jquery-1.8.3.min.js"></script>
+<script>
+$(document).ready(function(){
+$("#city").change(function(){
+var ci=$("#city").val()
+$.ajax({
+url:{% url 'getplace' %},
+data:{'c':ci},
+success:function(data)
+{
+$("#place").html(data)
+}
+})
+})
+})
+
+
+
+</script>
+<body>
+<table>
+<tr>
+<th>City</th>
+<td>
+<select name ="city" id="city">
+<option>---select---</option>
+{% for j in cit %}
+<option value ="{{j.id}}">{{j.city}}</option>
+{% endfor %}
+</select>
+</td>
+</tr>
+<tr>
+<th>Place</th>
+<td><select name="place" id="place">
+<option>--select--</option>
+</table>
+</body>
+</html>

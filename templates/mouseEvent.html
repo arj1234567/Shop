@@ -1,0 +1,35 @@
+<html>
+<script src="/static/jquery-1.8.3.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#pid").on({
+	mouseenter:function(){
+	$(this).css("background","blue")
+},
+	mouseleave:function(){
+	$(this).css("background","black")
+},
+	click:function(){
+	$(this).css("background","yellow")
+},
+	dblclick:function(){
+	$(this).css("background","blue")
+}
+	
+})
+})
+$(document).ready(function(){
+	$(".pcls").click(function(){
+	$(this).hide()
+})
+	
+})
+
+
+
+</script>
+<body>
+<p id ="pid">Welcome</p>
+<p class ="pcls">Welcome to Jquery</p>
+</body>
+</html>
